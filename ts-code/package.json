@@ -1,0 +1,154 @@
+{
+  "name": "traycer-poc-typescript",
+  "displayName": "Traycer PoC (TypeScript)",
+  "description": "TypeScript version - Spec-driven development workflow with AI-powered task execution",
+  "version": "1.0.1",
+  "publisher": "abhishek",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/traycer-poc"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "traycer",
+    "spec-kit",
+    "specification",
+    "tasks",
+    "workflow",
+    "copilot",
+    "ai",
+    "automation",
+    "typescript"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "spec-task-container",
+          "title": "Traycer-POC",
+          "icon": "$(checklist)"
+        }
+      ]
+    },
+    "views": {
+      "spec-task-container": [
+        {
+          "id": "specWorkflowView",
+          "name": "Workflow Steps",
+          "icon": "$(layers)"
+        },
+        {
+          "id": "specTaskView",
+          "name": "Implementation Tasks",
+          "icon": "$(tasklist)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "specTaskViewer.refresh",
+        "title": "Refresh Tasks",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "specTaskViewer.runAll",
+        "title": "Run All Tasks (Spec-Kit Implement)",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "specTaskViewer.implement",
+        "title": "Implement Task",
+        "icon": "$(play)"
+      },
+      {
+        "command": "specTaskViewer.verify",
+        "title": "Verify Task",
+        "icon": "$(check)"
+      },
+      {
+        "command": "specTaskViewer.implementPhase",
+        "title": "Implement Phase",
+        "icon": "$(play)"
+      },
+      {
+        "command": "specTaskViewer.verifyPhase",
+        "title": "Verify Phase",
+        "icon": "$(check)"
+      },
+      {
+        "command": "specWorkflow.runStep",
+        "title": "Run Step",
+        "icon": "$(play)"
+      },
+      {
+        "command": "specWorkflow.viewOutput",
+        "title": "View Output",
+        "icon": "$(eye)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "specTaskViewer.runAll",
+          "when": "view == specTaskView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "specTaskViewer.refresh",
+          "when": "view == specTaskView || view == specWorkflowView",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "specTaskViewer.implement",
+          "when": "view == specTaskView && viewItem == task",
+          "group": "inline@1"
+        },
+        {
+          "command": "specTaskViewer.verify",
+          "when": "view == specTaskView && viewItem == task",
+          "group": "inline@2"
+        },
+        {
+          "command": "specTaskViewer.implementPhase",
+          "when": "view == specTaskView && viewItem == phase",
+          "group": "inline@1"
+        },
+        {
+          "command": "specTaskViewer.verifyPhase",
+          "when": "view == specTaskView && viewItem == phase",
+          "group": "inline@2"
+        },
+        {
+          "command": "specWorkflow.runStep",
+          "when": "view == specWorkflowView && viewItem == workflowStep",
+          "group": "inline@1"
+        },
+        {
+          "command": "specWorkflow.viewOutput",
+          "when": "view == specWorkflowView && viewItem == workflowStep",
+          "group": "inline@2"
+        }
+      ]
+    }
+  }
+}
