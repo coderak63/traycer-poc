@@ -60,3 +60,11 @@ code --install-extension traycer-poc-1.0.0.vsix --force
 
 - VS Code 1.85.0+
 - GitHub Copilot (optional but recommended)
+
+
+# Note:
+**For Typescript version, check "ts-code" folder**
+
+  
+
+  
